@@ -1,5 +1,4 @@
-package cards;
-import java.awt.*;
+package sample;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

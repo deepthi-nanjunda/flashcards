@@ -1,12 +1,4 @@
-package cards;
-import cards.screen1.*;
-
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Statement;
+package app.model;
 
 public class flashcard
 {

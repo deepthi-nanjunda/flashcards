@@ -1,4 +1,4 @@
-package cards;
+package app.ui;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -6,11 +6,8 @@ import java.awt.event.ActionListener;
 import java.sql.*;
 import java.util.ArrayList;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-
-import cards.screen2;
 
 public class screen1
 {

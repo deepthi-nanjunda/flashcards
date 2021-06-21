@@ -1,4 +1,4 @@
-package cards;
+package app.ui;
 
 import java.sql.Connection;
 

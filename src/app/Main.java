@@ -1,6 +1,6 @@
-package com.company;
+package app;
 
-import cards.screen1;
+import app.ui.screen1;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

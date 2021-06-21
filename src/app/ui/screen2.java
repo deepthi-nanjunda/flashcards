@@ -1,4 +1,6 @@
-package cards;
+package app.ui;
+
+import app.model.flashcard;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,7 +18,7 @@ public class screen2
     screen2(Connection connection)
     {
         this.connection=connection;
-
+        popupFactory = new PopupFactory();
 
     }
 

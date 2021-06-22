@@ -1,19 +1,20 @@
 package app;
 
-import app.ui.screen1;
+import app.ui.Screen1;
 
+import javax.swing.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Main {
 
-    public static void main(String[] args) throws SQLException {
-	// write your code here
+  public static void main(String[] args) throws SQLException {
+    // write your code here
 
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/flash_card", "root",  "MyLibraSql@123");
-
-        screen1 s1 = new screen1(connection);
-        s1.run();
-    }
+    Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/flash_card", "root", "MyLibraSql@123");
+    JFrame jframe = new JFrame();
+    Screen1 s1 = new Screen1(connection, jframe );
+    s1.run();
+  }
 }

@@ -13,12 +13,12 @@ public class screen2
 {
     private Connection connection;
     private String actionPerformed;
-    private PopupFactory popupFactory;
+
     private JFrame f = new JFrame("Cards");
     screen2(Connection connection)
     {
         this.connection=connection;
-        popupFactory = new PopupFactory();
+
 
     }
 
@@ -60,15 +60,18 @@ public class screen2
                 @Override
                 public void actionPerformed(ActionEvent e)
                 {
-                    Popup p;
+                    PopupFactory popupFactory = new PopupFactory();
+                    JPanel jPanel=new JPanel();
+                    Popup popup;
                     JLabel jLabel= new JLabel(f1.getMeaning());
-                    p=popupFactory.getPopup(f,jLabel,180, 100);
-                    p.show();
-
-
+                    jPanel.add(jLabel);
+                    jPanel.setLayout(new GridLayout(1,1));
+                    popup=popupFactory.getPopup(f,jPanel,180, 100);
+                    popup.show();
                 }
             });
         }
+
         f.setLayout(new GridLayout(0,4));
         f.setSize(500,600);
         f.setVisible(true);

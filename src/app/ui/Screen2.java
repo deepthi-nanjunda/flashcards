@@ -12,29 +12,29 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.function.Supplier;
 
-public class Screen2 implements ActionListener
-{
+public class Screen2 implements ActionListener {
   private final Connection connection;
+  public Popup popup;
   private String actionPerformed;
   private JPanel basePanel;
   private JFrame details;
   private flashcard currCard;
+  private PopupFactory popupFactory;
 
-  Screen2(Connection connection) {
+
+  public Screen2(Connection connection) {
     this.connection = connection;
     this.details = new JFrame("Details");
     this.basePanel = new JPanel();
     this.details.add(this.basePanel);
-    this.basePanel.setLayout(new GridLayout(0,4));
-    this.basePanel.setSize(400, 500);
-
-
+    this.basePanel.setLayout(new GridLayout(0, 4));
+    this.basePanel.setSize(500, 600);
   }
 
 
-  void run(String actionPerformed) throws SQLException
-  {
+  void run(String actionPerformed) throws SQLException {
     Statement statement = this.connection.createStatement();
 
     StringBuilder stringBuilder = new StringBuilder();
@@ -47,8 +47,7 @@ public class Screen2 implements ActionListener
 
     ArrayList<String> arrayList = new ArrayList<String>();
     ArrayList<flashcard> flashcards = new ArrayList<>();
-    while (resultSet.next())
-    {
+    while (resultSet.next()) {
 
       flashcard f1 = new flashcard();
       f1.setCardno(resultSet.getInt("cardno"));
@@ -59,57 +58,50 @@ public class Screen2 implements ActionListener
 
     }
 
-    for (flashcard f1 : flashcards)
-    {
-      DisplayCard wordCard = new DisplayCard(f1.getWord(),f1.getMeaning(),true);
-      this.basePanel.add(wordCard);
-
+    for (flashcard f1 : flashcards) {
+      JButton word = new JButton(f1.getWord());
+      word.addActionListener(this);
+      this.basePanel.add(word);
     }
+
     this.details.setSize(400, 500);
     this.details.setVisible(true);
     this.basePanel.setVisible(true);
-
-
   }
 
   @Override
-  public void actionPerformed(ActionEvent e)
-  {
-      PopupFactory popupFactory = new PopupFactory();
-      Popup popup;
-      DisplayCard displayCard = new DisplayCard();
-      popup = popupFactory.getPopup(this.basePanel,displayCard,180,200);
+  public void actionPerformed(ActionEvent e) {
+
+    try {
+      Statement statement = this.connection.createStatement();
+      StringBuilder stringBuilder = new StringBuilder();
+      stringBuilder.append("select meaning from cards where ");
+      stringBuilder.append("word = ");
+      stringBuilder.append("'");
+      stringBuilder.append(e.getActionCommand());
+      stringBuilder.append("';");
+      ResultSet resultSet = statement.executeQuery(stringBuilder.toString());
+
+      resultSet.next();
+      popupFactory = new PopupFactory();
+      final Supplier<Boolean> myfunc = this::deletePopUp;
+      DisplayCard meaningCard = new DisplayCard(myfunc, resultSet.getString("meaning"));
+      popup = this.popupFactory.getPopup(this.basePanel, meaningCard, 180, 200);
       popup.show();
 
 
-
-
-
-
-
-
-
-//      JPanel jPanel1 = new JPanel();
-//
-//      this.basePanel.add(jPanel1);
-//      JLabel jLabel = new JLabel(f1.getMeaning());
-//      jLabel.setBounds(180, 100, 50, 200);
-//      jLabel.setBackground(Color.ORANGE);
-//      jPanel1.add(jLabel);
-//      JButton jButton1 = new JButton("Click this to close");
-//      jButton1.addActionListener(new ActionListener()
-//      {
-//        @Override
-//        public void actionPerformed(ActionEvent e)
-//        {
-//          jPanel1.setVisible(false);
-//          jLabel.setVisible(false);
-//        }
-//      });
-//      jPanel1.add(jButton1);
-//      jPanel1.setLayout(new GridLayout(0, 4));
-//      popup = popupFactory.getPopup(this, new DisplayCard(), 180, 100);
-//      popup.show();
+    } catch (SQLException exception) {
+      exception.printStackTrace();
     }
   }
+
+  public boolean deletePopUp() {
+    this.popup.hide();
+    return true;
+  }
+
+
+}
+
+
 

@@ -14,23 +14,20 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.function.Supplier;
 
-public class Screen2 implements ActionListener {
+public class Screen2 extends JPanel implements ActionListener {
   private final Connection connection;
   public Popup popup;
-  private String actionPerformed;
-  private JPanel basePanel;
-  private JFrame details;
-  private flashcard currCard;
   private PopupFactory popupFactory;
 
 
   public Screen2(Connection connection) {
     this.connection = connection;
-    this.details = new JFrame("Details");
-    this.basePanel = new JPanel();
-    this.details.add(this.basePanel);
-    this.basePanel.setLayout(new GridLayout(0, 4));
-    this.basePanel.setSize(500, 600);
+    setVisible(true);
+    setSize(500, 600);
+    setLayout(new GridLayout(1, 1));
+    add(new JLabel("empty"));
+
+
   }
 
 
@@ -61,12 +58,8 @@ public class Screen2 implements ActionListener {
     for (flashcard f1 : flashcards) {
       JButton word = new JButton(f1.getWord());
       word.addActionListener(this);
-      this.basePanel.add(word);
+      add(word);
     }
-
-    this.details.setSize(400, 500);
-    this.details.setVisible(true);
-    this.basePanel.setVisible(true);
   }
 
   @Override
@@ -86,7 +79,7 @@ public class Screen2 implements ActionListener {
       popupFactory = new PopupFactory();
       final Supplier<Boolean> myfunc = this::deletePopUp;
       DisplayCard meaningCard = new DisplayCard(myfunc, resultSet.getString("meaning"));
-      popup = this.popupFactory.getPopup(this.basePanel, meaningCard, 180, 200);
+      popup = this.popupFactory.getPopup(this, meaningCard, 180, 200);
       popup.show();
 
 

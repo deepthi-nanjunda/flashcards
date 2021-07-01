@@ -1,6 +1,7 @@
 package app.ui;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -9,23 +10,21 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class Screen1 {
+public class Screen1 extends JPanel implements ActionListener {
   private final Connection conn;
-  private final JFrame mainFrame;
-  private final JPanel basePanel;
+  private final Screen2 screen2;
+  private JTabbedPane jTabbedPane;
 
   public Screen1(final Connection connection,
-                 final JFrame mainFrame) {
-    this.mainFrame = mainFrame;
-    this.basePanel = new JPanel();
-    this.mainFrame.add(this.basePanel);
+                 final Screen2 screen2,
+                 final JTabbedPane jTabbedPane) {
     this.conn = connection;
-    this.basePanel.setSize(500, 600);
-    this.mainFrame.setSize(500, 600);
-    this.mainFrame.setVisible(true);
+    this.screen2 = screen2;
+    this.jTabbedPane = jTabbedPane;
+    setVisible(true);
+    setSize(500, 600);
+    setLayout(new GridLayout(1, 1));
 
-  }
-  public void run() {
     try {
       Statement statement = this.conn.createStatement();
       ResultSet resultSet = statement.executeQuery("select distinct type from cards;");
@@ -36,29 +35,26 @@ public class Screen1 {
         arrayList.add(resultSet.getString("type"));
       }
 
-      final Screen2 screen2 = new Screen2(this.conn);
-
-      for (int i = 0; i < arrayList.size(); i++)
-      {
+      for (int i = 0; i < arrayList.size(); i++) {
         JButton b = new JButton(arrayList.get(i));
         b.setBounds(200, (70 * i), 100, 40);
-        this.basePanel.add(b);
-        b.addActionListener(new ActionListener() {
-          @Override
-          public void actionPerformed(ActionEvent e)
-          {
-            try {
-              screen2.run(e.getActionCommand());
-            } catch (SQLException exception) {
-              // throw exception
-              exception.printStackTrace();
-            }
-          }
-        });
+        add(b);
+        b.addActionListener(this);
       }
-      this.basePanel.setVisible(true);
     } catch (Exception e) {
       e.printStackTrace();
+    }
+  }
+
+  @Override
+  public void actionPerformed(ActionEvent e) {
+    try {
+
+      this.screen2.removeAll();
+      this.screen2.run(e.getActionCommand());
+      this.jTabbedPane.setSelectedComponent(this.screen2);
+    } catch (SQLException exception) {
+      exception.printStackTrace();
     }
   }
 }

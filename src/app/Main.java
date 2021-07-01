@@ -1,6 +1,7 @@
 package app;
 
 import app.ui.Screen1;
+import app.ui.Screen2;
 
 import javax.swing.*;
 import java.sql.Connection;
@@ -14,7 +15,13 @@ public class Main {
 
     Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/flash_card", "root", "MyLibraSql@123");
     JFrame jframe = new JFrame();
-    Screen1 s1 = new Screen1(connection, jframe );
-    s1.run();
+    jframe.setVisible(true);
+    jframe.setSize(500,600);
+    JTabbedPane jTabbedPane = new JTabbedPane(JTabbedPane.TOP);
+    Screen2 screen2 = new Screen2(connection);
+    jTabbedPane.add("type", new Screen1(connection,screen2, jTabbedPane));
+    jTabbedPane.add("words",screen2);
+
+    jframe.add(jTabbedPane);
   }
 }

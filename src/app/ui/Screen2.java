@@ -24,13 +24,9 @@ public class Screen2 extends JPanel implements ActionListener {
     this.connection = connection;
     setVisible(true);
     setSize(500, 600);
-    setLayout(new GridLayout(1, 1));
+    setLayout(new GridLayout(4, 4));
     add(new JLabel("empty"));
-
-
   }
-
-
   void run(String actionPerformed) throws SQLException {
     Statement statement = this.connection.createStatement();
 
@@ -79,8 +75,9 @@ public class Screen2 extends JPanel implements ActionListener {
       popupFactory = new PopupFactory();
       final Supplier<Boolean> myfunc = this::deletePopUp;
       DisplayCard meaningCard = new DisplayCard(myfunc, resultSet.getString("meaning"));
-      popup = this.popupFactory.getPopup(this, meaningCard, 180, 200);
+      popup = this.popupFactory.getPopup(this, meaningCard, 400, 400);
       popup.show();
+
 
 
     } catch (SQLException exception) {

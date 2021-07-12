@@ -1,5 +1,7 @@
 package app.ui;
 
+import app.userMadeException.customException;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -10,20 +12,24 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+
+
 public class Screen1 extends JPanel implements ActionListener {
   private final Connection conn;
   private final Screen2 screen2;
   private JTabbedPane jTabbedPane;
+  private JButton insert;
+  private JButton b;
 
   public Screen1(final Connection connection,
                  final Screen2 screen2,
-                 final JTabbedPane jTabbedPane) {
+                 final JTabbedPane jTabbedPane){
     this.conn = connection;
     this.screen2 = screen2;
     this.jTabbedPane = jTabbedPane;
     setVisible(true);
     setSize(500, 600);
-    setLayout(new GridLayout(1, 1));
+    setLayout(new GridLayout(0,2));
 
     try {
       Statement statement = this.conn.createStatement();
@@ -43,18 +49,18 @@ public class Screen1 extends JPanel implements ActionListener {
       }
     } catch (Exception e) {
       e.printStackTrace();
+
     }
   }
-
   @Override
   public void actionPerformed(ActionEvent e) {
-    try {
 
-      this.screen2.removeAll();
-      this.screen2.run(e.getActionCommand());
-      this.jTabbedPane.setSelectedComponent(this.screen2);
-    } catch (SQLException exception) {
-      exception.printStackTrace();
+      try {
+        this.screen2.removeAll();
+        this.screen2.run(e.getActionCommand());
+        this.jTabbedPane.setSelectedComponent(this.screen2);
+      } catch (SQLException exception) {
+        exception.printStackTrace();
+      }
     }
-  }
 }

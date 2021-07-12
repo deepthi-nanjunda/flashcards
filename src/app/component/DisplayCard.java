@@ -19,16 +19,19 @@ public class DisplayCard extends JPanel implements ActionListener {
   public DisplayCard(final Supplier<Boolean> myFunc,
                      final String meaning) {
     this.meaning = meaning;
-    this.basePanel = basePanel;
     this.jTextArea = new JTextArea(this.meaning);
+    this.jTextArea.setSize(200,200);
+//    this.jTextArea.setBounds(100, 150, 200, 200);
+    this.jTextArea.setLineWrap(true);
+    this.jTextArea.setWrapStyleWord(true);
     this.myFunc = myFunc;
     jButton = new JButton("Click me");
     jButton.addActionListener(this);
-
+    jButton.setBounds(1000, 400, 50 , 50);
+    setLocation(400,400);
+    setLayout(new GridLayout(0,1));
     setVisible(true);
-    setBounds(150, 180, 300, 400);
     setBackground(Color.ORANGE);
-    setLayout(new GridLayout());
     add(jTextArea);
     add(jButton);
   }

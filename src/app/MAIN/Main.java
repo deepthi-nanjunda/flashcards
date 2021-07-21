@@ -1,9 +1,8 @@
-package app;
+package app.MAIN;
 
 import app.ui.Screen1;
 import app.ui.Screen2;
-import app.ui.insertScreen;
-import app.userMadeException.customException;
+import app.ui.insert;
 
 import javax.swing.*;
 import java.sql.Connection;
@@ -16,16 +15,16 @@ public class Main {
     // write your code here
 
       Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/flash_card", "root", "MyLibraSql@123");
-      JFrame jframe = new JFrame();
+      JFrame jframe = new JFrame("Flashcards");
       jframe.setVisible(true);
       jframe.setSize(500, 600);
       jframe.setLocationRelativeTo(null);
       JTabbedPane jTabbedPane = new JTabbedPane(JTabbedPane.TOP);
       Screen2 screen2 = new Screen2(connection);
-      insertScreen insertScreen = new insertScreen(connection);
-      jTabbedPane.add("type", new Screen1(connection, screen2, jTabbedPane));
-      jTabbedPane.add("words", screen2);
-      jTabbedPane.add("insertScreen", insertScreen);
+      insert insert = new insert(connection);
+      jTabbedPane.add("Categories", new Screen1(connection, screen2, jTabbedPane));
+      jTabbedPane.add("Words", screen2);
+      jTabbedPane.add("Create", insert);
       jframe.add(jTabbedPane);
 
 

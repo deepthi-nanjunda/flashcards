@@ -37,11 +37,11 @@ IIf the user wishes to insert a new set of Flashcards, the user can navigate to 
 
 #### MySQL
 1. After installing MySQL, open MySQL Workbench and import the SQL file that should be available in the directory you cloned in.
-2. Run the sql script.
+2. Run the [sql script](database/flash_card_cards.sql).
 
 #### IntelliJ
 1. Open the project on IntelliJ.
-2. Change the username and password in the Main.java file accordingly.
+2. Change the username and password in the [Main.java](src/app/MAIN/Main.java) file accordingly.
 3. Now the program should run properly on your system.
 
 ## Screenshots and Output

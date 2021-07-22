@@ -24,14 +24,16 @@ public class DisplayCard extends JPanel implements ActionListener {
 //    this.jTextArea.setBounds(100, 150, 200, 200);
     this.jTextArea.setLineWrap(true);
     this.jTextArea.setWrapStyleWord(true);
+    this.jTextArea.setBackground(Color.PINK);
+    this.jTextArea.setBorder(BorderFactory.createLineBorder(Color.BLACK));
     this.myFunc = myFunc;
-    jButton = new JButton("Click me");
+    jButton = new JButton("Close");
     jButton.addActionListener(this);
     jButton.setBounds(1000, 400, 50 , 50);
+    jButton.setBackground(Color.WHITE);
     setLocation(400,400);
     setLayout(new GridLayout(0,1));
     setVisible(true);
-    setBackground(Color.ORANGE);
     add(jTextArea);
     add(jButton);
   }

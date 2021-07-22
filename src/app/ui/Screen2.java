@@ -24,10 +24,12 @@ public class Screen2 extends JPanel implements ActionListener {
     this.connection = connection;
     setVisible(true);
     setSize(500, 600);
-    setLayout(new GridLayout(4, 4));
-    add(new JLabel("empty"));
+    setLayout(new GridLayout(0, 1));
+    add(new JLabel("Nothing to see here", SwingConstants.CENTER));
   }
-  void run(String actionPerformed) throws SQLException {
+
+
+    public void run(String actionPerformed) throws SQLException {
     Statement statement = this.connection.createStatement();
 
     StringBuilder stringBuilder = new StringBuilder();
@@ -53,6 +55,7 @@ public class Screen2 extends JPanel implements ActionListener {
 
     for (flashcard f1 : flashcards) {
       JButton word = new JButton(f1.getWord());
+      word.setBackground(Color.WHITE);
       word.addActionListener(this);
       add(word);
     }
@@ -75,7 +78,7 @@ public class Screen2 extends JPanel implements ActionListener {
       popupFactory = new PopupFactory();
       final Supplier<Boolean> myfunc = this::deletePopUp;
       DisplayCard meaningCard = new DisplayCard(myfunc, resultSet.getString("meaning"));
-      popup = this.popupFactory.getPopup(this, meaningCard, 400, 400);
+      popup = this.popupFactory.getPopup(this, meaningCard, 550, 300);
       popup.show();
 
 
@@ -89,8 +92,6 @@ public class Screen2 extends JPanel implements ActionListener {
     this.popup.hide();
     return true;
   }
-
-
 }
 
 

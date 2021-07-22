@@ -1,7 +1,4 @@
 package app.ui;
-
-import app.userMadeException.customException;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -12,8 +9,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-
-
 public class Screen1 extends JPanel implements ActionListener {
   private final Connection conn;
   private final Screen2 screen2;
@@ -21,15 +16,17 @@ public class Screen1 extends JPanel implements ActionListener {
   private JButton insert;
   private JButton b;
 
+
   public Screen1(final Connection connection,
                  final Screen2 screen2,
                  final JTabbedPane jTabbedPane){
     this.conn = connection;
     this.screen2 = screen2;
     this.jTabbedPane = jTabbedPane;
+    setBackground(Color.WHITE);
     setVisible(true);
     setSize(500, 600);
-    setLayout(new GridLayout(0,2));
+    setLayout(new GridLayout(0,1));
 
     try {
       Statement statement = this.conn.createStatement();
@@ -41,12 +38,14 @@ public class Screen1 extends JPanel implements ActionListener {
         arrayList.add(resultSet.getString("type"));
       }
 
-      for (int i = 0; i < arrayList.size(); i++) {
-        JButton b = new JButton(arrayList.get(i));
-        b.setBounds(200, (70 * i), 100, 40);
-        add(b);
-        b.addActionListener(this);
-      }
+          for (int i = 0; i < arrayList.size(); i++) {
+            JButton b = new JButton(arrayList.get(i));
+            b.setBackground(Color.WHITE);
+            b.setSize(50, 40);
+            add(b);
+            b.addActionListener(this);
+          }
+
     } catch (Exception e) {
       e.printStackTrace();
 

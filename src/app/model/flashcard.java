@@ -6,7 +6,6 @@ public class flashcard {
   private String word;
   private String meaning;
 
-
   public int getCardno() {
     return cardno;
   }

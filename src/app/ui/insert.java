@@ -31,66 +31,55 @@ public class insert extends JPanel implements ActionListener {
   public insert(Connection connection) throws SQLException {
 
     this.connection = connection;
-    setLayout(new FlowLayout());
-
-    JPanel panel = new JPanel();
-    panel.setSize(300,300);
-    BorderLayout layout = new BorderLayout();
-    layout.setHgap(20);
-    layout.setVgap(20);
-    panel.setLayout(layout);
-
     title = new JLabel();
-    title.setText("Insertion");
     title.setSize(100, 30);
     add(title);
-   // setLayout(new GridLayout(0, 2));
+   setLayout(new GridLayout(9, 2));
 
-    type = new JLabel("Type");
+    type = new JLabel("Category of the Flashcard");
     type.setSize(20,20);
-   // type.setLocation(100,100);
+    type.setLocation(100,100);
+    add(type);
    // type.setSize(20, 20);
-    panel.add(type,BorderLayout.LINE_START);
 
     typeName = new JTextArea();
     typeName.setSize(50,20);
-    //typeName.setLocation(150, 100);
-    panel.add(typeName, BorderLayout.EAST);
+    typeName.setLocation(150, 100);
+      add(typeName);
 
-    word = new JLabel("word");
+    word = new JLabel("Word (Front Side)");
     word.setSize(20,20);
-    //word.setLocation(100, 170);
-    panel.add(word,BorderLayout.WEST);
+    word.setLocation(100, 170);
+    add(word);
+
 
     wordName = new JTextArea();
     wordName.setSize(70,20);
-//    wordName.setLocation(150, 770);
-    panel.add(wordName,BorderLayout.EAST);
+    wordName.setLocation(150, 770);
+    add(wordName);
 
-    meaning = new JLabel("meaning");
+    meaning = new JLabel("Explaination/Meaning (Back Side)");
     meaning.setSize(70,20);
-//    meaning.setLocation(100, 240);
-    panel.add(meaning,BorderLayout.WEST);
+    meaning.setLocation(100, 240);
+    add(meaning);
 
     explain = new JTextArea();
     explain.setSize(70,20);
-//    explain.setLocation(150, 240);
-    panel.add(explain, BorderLayout.EAST);
+    explain.setLocation(150, 240);
+    add(explain);
 
     submit = new JButton("submit");
     submit.setSize(20,20);
-//    submit.setLocation(300, 300);
+    submit.setLocation(300, 300);
     submit.addActionListener(this);
-    add(submit,BorderLayout.SOUTH);
+    add(submit);
+
 
     reset = new JButton("Reset");
     reset.setSize(20,20);
-    //reset.setLocation(300,300);
+    reset.setLocation(320,300);
     reset.addActionListener(this);
-    panel.add(reset, BorderLayout.SOUTH);
-
-    add(panel);
-
+    add(reset);
   }
 
   @Override
@@ -122,7 +111,7 @@ public class insert extends JPanel implements ActionListener {
           JButton acknowledge = new JButton("OK");
           success.add(acknowledge);
           popupFactory = new PopupFactory();
-          popup = this.popupFactory.getPopup(this, success, 400, 400);
+          popup = this.popupFactory.getPopup(this, success, 550, 300);
           acknowledge.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

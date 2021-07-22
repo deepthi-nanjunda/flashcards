@@ -46,18 +46,22 @@ IIf the user wishes to insert a new set of Flashcards, the user can navigate to 
 
 ## Screenshots and Output
 
+### Screenshots
 ##### Categories
-![Categories](https://github.com/deepthi-nanjunda/flashcards/blob/dev/Screenshots/Categories.PNG?raw=true)
+![Categories](Screenshots/Categories.PNG)
 ##### Flashcards section when nothing is clicked
-![Flashcards](https://github.com/deepthi-nanjunda/flashcards/blob/dev/Screenshots/Flashcards%20section%20when%20nothing%20is%20clicked.PNG?raw=true)
+![clicked](Screenshots/homescreen.PNG)
 ##### Initial create screen
-![create](https://github.com/deepthi-nanjunda/flashcards/blob/dev/Screenshots/initial%20create%20section.PNG?raw=true)
+![create](Screenshots/initial_create_section.PNG)
 ##### When the category -idioms is chosen
-![Chosen Category](https://github.com/deepthi-nanjunda/flashcards/blob/dev/Screenshots/flashcards%20section%20when%20idioms%20is%20chosen%20from%20the%20first%20screen.PNG?raw=true)
+![Chosen Category](Screenshots/flashcards_firstscreen.PNG)
 ##### When a Flashcard is clicked on
-![Clicked](https://github.com/deepthi-nanjunda/flashcards/blob/dev/Screenshots/Other%20side%20of%20flashcard%20when%20flashcard%20_see%20eye%20to%20eye_%20is%20clicked%20on.PNG?raw=true)
+![Clicked](Screenshots/opposite_side.PNG)
 ##### Insert a new flashcard
-![insertion](https://github.com/deepthi-nanjunda/flashcards/blob/dev/Screenshots/inserting%20new%20flashcard.PNG?raw=true)
+![insertion](Screenshots/insertion.PNG)
 ##### Successful insertion
-![Success](https://github.com/deepthi-nanjunda/flashcards/blob/dev/Screenshots/message%20being%20printed%20on%20successful%20insertion.PNG?raw=true)
+![Success](Screenshots/successfull_insertion.PNG)
 
+
+### Output
+![output](output/output.gif)
